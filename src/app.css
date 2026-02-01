@@ -1,0 +1,263 @@
+@import 'tailwindcss';
+@import '@fontsource/inter';
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+		'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+html {
+	overflow-x: hidden;
+	max-width: 100vw;
+	background: #0f1f3a;
+}
+
+body {
+	overflow-x: hidden;
+	background: #0f1f3a;
+	color: var(--foreground);
+	font-family: var(--font-sans);
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+@keyframes caretBlink {
+	0%,
+	45% {
+		opacity: 1;
+	}
+	46%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.letter-caret {
+	display: inline-block;
+	width: 0.75ch;
+	margin-left: 0.1ch;
+	border-left: 2px solid rgba(41, 37, 36, 0.6);
+	animation: caretBlink 1.05s steps(1) infinite;
+	transform: translateY(0.08em);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.letter-caret {
+		animation: none;
+	}
+}
+
+.paper-texture {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.9)),
+		repeating-linear-gradient(
+			0deg,
+			rgba(120, 113, 108, 0.06) 0px,
+			rgba(120, 113, 108, 0.06) 1px,
+			rgba(255, 255, 255, 0) 12px,
+			rgba(255, 255, 255, 0) 20px
+		),
+		repeating-radial-gradient(
+			circle at 12% 18%,
+			rgba(120, 113, 108, 0.05) 0px,
+			rgba(120, 113, 108, 0.05) 1px,
+			rgba(255, 255, 255, 0) 3px,
+			rgba(255, 255, 255, 0) 9px
+		),
+		linear-gradient(135deg, rgba(254, 243, 199, 0.38), rgba(251, 231, 198, 0.18));
+}
+
+.wax-seal {
+	background:
+		radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 55%),
+		radial-gradient(circle at 65% 72%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0) 60%),
+		linear-gradient(180deg, rgba(190, 24, 93, 0.95), rgba(159, 18, 57, 0.95));
+}
+
+.pen-dot {
+	fill: rgba(41, 37, 36, 0.35);
+	animation: caretBlink 1.05s steps(1) infinite;
+}
+
+/* Party theme animations */
+@keyframes sparkle {
+	0%,
+	100% {
+		opacity: 0;
+		transform: scale(0) rotate(0deg);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1) rotate(180deg);
+	}
+}
+
+@keyframes glow-pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 20px rgba(232, 121, 249, 0.3);
+	}
+	50% {
+		box-shadow:
+			0 0 40px rgba(232, 121, 249, 0.6),
+			0 0 60px rgba(34, 211, 238, 0.3);
+	}
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0) rotate(0deg);
+	}
+	33% {
+		transform: translateY(-10px) rotate(1deg);
+	}
+	66% {
+		transform: translateY(-5px) rotate(-1deg);
+	}
+}
+
+@keyframes bounce-in {
+	0% {
+		opacity: 0;
+		transform: scale(0.3);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+	70% {
+		transform: scale(0.9);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes wiggle {
+	0%,
+	100% {
+		transform: rotate(-3deg);
+	}
+	50% {
+		transform: rotate(3deg);
+	}
+}
+
+@keyframes scroll-bounce {
+	0%,
+	20%,
+	50%,
+	80%,
+	100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-8px);
+	}
+	60% {
+		transform: translateY(-4px);
+	}
+}
+
+/* Performant CSS animation for floating flags */
+@keyframes flag-float {
+	0%,
+	100% {
+		opacity: 0.4;
+		transform: translateY(0) rotate(-5deg);
+	}
+	50% {
+		opacity: 0.7;
+		transform: translateY(-15px) rotate(5deg);
+	}
+}
+
+.animate-sparkle {
+	animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+	animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+	animation: float 6s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+	animation: bounce-in 0.6s ease-out;
+}
+
+.animate-wiggle {
+	animation: wiggle 0.5s ease-in-out;
+}
+
+.animate-scroll-bounce {
+	animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* Focus glow for inputs in party theme */
+.party-input-glow:focus {
+	box-shadow:
+		0 0 0 3px rgba(232, 121, 249, 0.3),
+		0 0 20px rgba(232, 121, 249, 0.2);
+}
+
+/* Button glow effect */
+.party-button {
+	transition: box-shadow 0.3s ease;
+}
+
+.party-button:hover:not(:disabled) {
+	box-shadow:
+		0 0 25px rgba(232, 121, 249, 0.4),
+		0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkmark bounce animation */
+@keyframes checkmark-bounce {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.checkbox-bounce:checked {
+	animation: checkmark-bounce 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate-sparkle,
+	.animate-glow-pulse,
+	.animate-float,
+	.animate-bounce-in,
+	.animate-wiggle,
+	.animate-scroll-bounce,
+	.checkbox-bounce:checked {
+		animation: none;
+	}
+
+	.party-button:hover:not(:disabled) {
+		box-shadow: none;
+	}
+}
