@@ -82,7 +82,7 @@
 			class="absolute {config.size} {config.mobileOnly === false ? 'hidden sm:block' : ''}"
 			style="left: {config.left}; right: {config.right}; top: {config.top}; bottom: {config.bottom}; will-change: transform, opacity; {prefersReducedMotion
 				? 'opacity: 0.6'
-				: `animation: flag-float ${config.duration}s ease-in-out infinite; animation-delay: ${config.delay}s`}"
+				: `animation: flag-float ${config.duration}s ease-in-out infinite; animation-delay: ${config.delay}s; animation-fill-mode: backwards`}"
 		>
 			<svg
 				viewBox="0 0 37 28"

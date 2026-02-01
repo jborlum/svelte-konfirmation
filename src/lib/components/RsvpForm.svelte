@@ -28,10 +28,16 @@
 	}: Props = $props();
 
 	const rsvp = journeyContent.rsvp;
+	const inviteCode = $derived(invite.code);
+	const invitees = $derived(invite.invitees);
 
-	let attending = $state<Record<string, boolean>>(
-		Object.fromEntries(invite.invitees.map((inv) => [inv.id, false]))
-	);
+	let attending = $state<Record<string, boolean>>({});
+
+	$effect(() => {
+		if (Object.keys(attending).length === 0 && invitees.length > 0) {
+			attending = Object.fromEntries(invitees.map((inv) => [inv.id, false]));
+		}
+	});
 	let message = $state('');
 	let submitting = $state(false);
 	let success = $state(false);
@@ -58,8 +64,8 @@
 		submitting = true;
 		try {
 			const payload = {
-				inviteCode: invite.code,
-				responses: invite.invitees.map((inv) => ({
+				inviteCode,
+				responses: invitees.map((inv) => ({
 					id: inv.id,
 					name: inv.name,
 					attending: attending[inv.id] ?? false
@@ -151,7 +157,7 @@
 		<div class="grid gap-3">
 			<span class="text-sm font-medium {theme.text}">{rsvp.fields.whoIsComingLabel}</span>
 			<div class="grid gap-2">
-				{#each invite.invitees as invitee, index}
+				{#each invitees as invitee, index}
 					<label
 						class="flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 transition {theme.checkboxLabel} {attending[
 							invitee.id
